@@ -1,20 +1,23 @@
 {
-    "name": "itwri/game-bullfight",
-    "type": "project",
-    "require": {
-        "itwri/poker": "dev-master"
-    },
-    "license": "itwrite",
-    "authors": [
-        {
-            "name": "itwrite",
-            "email": "990881086@qq.com"
-        }
-    ],
-    "autoload": {
-      "classmap": ["src/"],
-        "psr-4": {
-            "Jasmine\\Game\\Bullfight\\": "src/"
-        }
+  "name": "itwri/game-bullfight",
+  "type": "project",
+  "require": {
+    "php": "^7.0",
+    "itwri/poker": "dev-master"
+  },
+  "license": "itwrite",
+  "authors": [
+    {
+      "name": "itwrite",
+      "email": "990881086@qq.com"
     }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/"
+    ],
+    "psr-4": {
+      "Jasmine\\Game\\Bullfight\\": "src/"
+    }
+  }
 }
