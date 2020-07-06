@@ -1,0 +1,53 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "4521bd4b783010426ec63b6c5cd9368a",
+    "packages": [
+        {
+            "name": "itwri/poker",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itwrite/poker.git",
+                "reference": "9792f9c4149bdc22c0c68bf4213dc12dcba35c6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itwrite/poker/zipball/9792f9c4149bdc22c0c68bf4213dc12dcba35c6c",
+                "reference": "9792f9c4149bdc22c0c68bf4213dc12dcba35c6c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Poker\\": "src/poker"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "itwrite",
+                    "email": "990881086@qq.com"
+                }
+            ],
+            "time": "2020-07-04T08:23:42+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
