@@ -6,29 +6,15 @@
  * Time: 23:36
  */
 
-namespace Jasmine\Game\Bullfight;
+namespace Jasmine\Game\Bullfight\Library;
 
 
-use Jasmine\Component\Poker\Poker;
+use Jasmine\Poker\Poker;
 
 interface BullfightInterface
 {
-
-    /**
-     * 取得扑克牌对象
-     * @return mixed
-     * itwri 2020/7/4 12:22
-     */
-    public function getPoker();
-
-    /**
-     * 设置扑克牌对象
-     * @param Poker $poker
-     * @return mixed
-     * itwri 2020/7/4 12:22
-     */
-    public function setPoker(Poker $poker);
-
+    
+    
     /**
      * 计算牛牛的结果值
      *
@@ -58,6 +44,6 @@ interface BullfightInterface
      * @return string
      * itwri 2020/7/6 23:52
      */
-    public function valueToString($taurusValue = -1);
+    public function valuesToString($taurusValue = -1);
 
 }

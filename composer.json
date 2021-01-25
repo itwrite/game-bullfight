@@ -1,6 +1,6 @@
 {
   "name": "itwri/game-bullfight",
-  "type": "project",
+  "type": "library",
   "require": {
     "php": "^7.0",
     "itwri/poker": "dev-master"
@@ -18,6 +18,9 @@
     ],
     "psr-4": {
       "Jasmine\\Game\\Bullfight\\": "src/"
-    }
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
   }
 }

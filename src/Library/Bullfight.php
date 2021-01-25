@@ -6,55 +6,28 @@
  * Time: 22:44
  */
 
-namespace Jasmine\Game\Bullfight;
+namespace Jasmine\Game\Bullfight\Library;
 
 
-use Jasmine\Component\Poker\Poker;
+use Jasmine\Poker\Card;
+use Jasmine\Poker\Poker;
 
-class Bullfight implements BullfightInterface
+class Bullfight implements BullfightInterface,PokerGameInterface
 {
-
-    /**
-     * @var Poker|null
-     */
-    protected $Poker = null;
-
     /**
      * @var bool
      */
     protected $hasExtraRules = false;
-
-    function __construct(Poker $poker)
-    {
-        /**
-         * 初始化扑克牌
-         * 有大小王
-         */
-        $this->setPoker($poker);
-    }
+    
+    protected $cardsLimitOfEachPlayer = 5;
 
     /**
-     * Desc: 取得扑克牌对象
-     * User: itwri
-     * Date: 2019/1/25
-     * Time: 13:31
-     *
-     * @return Poker|null
+     * @return int
+     * itwri 2021/1/25 10:44
      */
-    function getPoker()
+    public function getCardsLimitOfEachPlayer()
     {
-        return $this->Poker;
-    }
-
-    /**
-     * 设置扑克牌对象
-     * @param Poker $poker
-     * @return $this|mixed
-     * itwri 2020/7/4 12:32
-     */
-    public function setPoker(Poker $poker){
-        $this->Poker = $poker;
-        return $this;
+       return $this->cardsLimitOfEachPlayer;
     }
 
     /**
@@ -73,7 +46,7 @@ class Bullfight implements BullfightInterface
      */
     public function calculate(Array $oneHandCards)
     {
-        $minCard = $this->getPoker()->getTheMinCard($oneHandCards);
+        $minCard = Poker::findTheMinCard($oneHandCards);
         $points = self::toPoints($oneHandCards);
 
         /**
@@ -128,8 +101,8 @@ class Bullfight implements BullfightInterface
          * 牛值一样的情况下，比最大的牌,牌型大小为:黑桃>红心>梅花>方块
          */
         if ($firstTaurusValue == $secondTaurusValue) {
-            $firstMaxCard = $this->getPoker()->getTheMaxCard($firstHandCards);
-            return $firstMaxCard->compareWith($this->getPoker()->getTheMaxCard($secondHandCards));
+            $firstMaxCard = Poker::findTheMaxCard($firstHandCards);
+            return $firstMaxCard->compareWith(Poker::findTheMaxCard($secondHandCards));
         }
         return $firstTaurusValue > $secondTaurusValue ? 1 : -1;
     }
@@ -140,7 +113,7 @@ class Bullfight implements BullfightInterface
      * @return string
      * itwri 2020/7/4 12:26
      */
-    public function valueToString($taurusValue = -1)
+    public function valuesToString($taurusValue = -1)
     {
         switch ($taurusValue) {
             case 1:
@@ -171,7 +144,6 @@ class Bullfight implements BullfightInterface
         }
         return $label;
     }
-
 
     /**
      * 转换点数
