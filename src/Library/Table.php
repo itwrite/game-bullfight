@@ -8,10 +8,13 @@
 
 namespace Jasmine\Game\Bullfight\Library;
 
+use Jasmine\Game\Bullfight\Common\Fun;
+use Jasmine\Game\Bullfight\Console\Output;
 use Jasmine\Game\Bullfight\Traits\BaseProperties;
 use Jasmine\Game\Bullfight\Constant\TableConstant;
 use Jasmine\Game\Bullfight\Library\Seat;
 use Jasmine\Poker\Poker;
+use \Jasmine\Game\Bullfight\Console\Table as ConsoleTable;
 
 /**
  * 牛牛游戏
@@ -24,8 +27,6 @@ use Jasmine\Poker\Poker;
 class Table implements TableInterface
 {
     use BaseProperties;
-    const STATUS_WAIT = 0;
-    const STATUS_PLAYING = 1;
     
     /**
      * 等待的时间
@@ -51,7 +52,7 @@ class Table implements TableInterface
      * 这桌子能容纳的座位数
      * @var int 
      */
-    protected $capacity = 4;
+    protected $capacity = 5;
     /**
      * 桌子有一些座位
      * @var array
@@ -63,12 +64,19 @@ class Table implements TableInterface
      */
     protected $Poker = null;
 
+    /**
+     * @var Output|null
+     */
+    protected $Output = null;
+
     public function __construct()
     {
         /**
          * 初始化扑克牌
          */
         $this->Poker = new Poker(true);
+
+        $this->Output = new Output();
         
         //规则
         $this->setBullfight(new Bullfight());
@@ -77,9 +85,17 @@ class Table implements TableInterface
          * 初始化座位
          */
         for ($i = 0; $i < $this->capacity; $i++){
-            $this->addSeat('Seat '.($i+1));
+            $this->addSeat(str_pad(($i+1),3,'0',STR_PAD_LEFT));
         }
         $this->setBanker(0);
+    }
+
+    /**
+     * @return Output|null
+     * itwri 2021/1/26 11:06
+     */
+    public function getOutput(){
+        return $this->Output;
     }
 
     /**
@@ -157,11 +173,11 @@ class Table implements TableInterface
                         
                         $this->sendCards();
                         
-                        $this->goToStep(3,4);
+                        $this->goToStep(3,2);
 
                         break;
                     case 3:
-                        $this->e('开牌'.PHP_EOL);
+                        $this->e('开牌');
                         $this->showPlayersCards();
                         $this->e(PHP_EOL.PHP_EOL);
                         sleep(5);
@@ -244,6 +260,7 @@ class Table implements TableInterface
             });
         }
 
+//        $this->setBanker(rand(0,count($this->seats)-1));
     }
 
     /**
@@ -251,9 +268,14 @@ class Table implements TableInterface
      */
     public function showPlayersCards(){
 
+        $consoleTable = new ConsoleTable();
+
+        $consoleTable->setHeader(['座位','开牌','结果','输/赢'],ConsoleTable::ALIGN_CENTER);
+
+        $rows = [];
         /** @var Seat $banker */
         $banker = $this->findTheBanker();
-        $this->eachSeats(function(Seat $seat,$j) use($banker){
+        $this->eachSeats(function(Seat $seat,$j) use($banker,&$rows){
 
 
             $cards = $seat->getCards();
@@ -261,10 +283,16 @@ class Table implements TableInterface
             $taurusValue = $this->getBullfight()->calculate($cards);
             //比较输赢
             $result = $this->getBullfight()->compareHandCards($banker->getCards(),$seat->getCards());
-            
-            $this->e(($seat->isBanker()?"【庄家】":"【玩家】").($seat->isBanker()?"      ":($result>0?"【输】":"【赢】")).'牌：'.$seat->cardsToString()."(".$this->getBullfight()->valuesToString($taurusValue).")");
-            
+
+            $rows[] = [
+                $seat->getName(),
+                $seat->cardsToString(),//
+                $this->getBullfight()->valuesToString($taurusValue),
+                ($seat->isBanker()?"【庄】":($result>0?"【输】":"【赢】"))
+            ];
         });
+     
+        $this->e($consoleTable->render($rows,ConsoleTable::ALIGN_LEFT),32);
     }
 
     /**
@@ -284,8 +312,8 @@ class Table implements TableInterface
     /**
      * itwri 2020/7/15 16:31
      */
-    public function e($message = ''){
-        echo implode(',',func_get_args()).PHP_EOL;
+    public function e($message = '',$color = 37){
+        $this->getOutput()->writeln([sprintf("\033[%dm{$message}\033[0m",$color)]);
     }
 
 }
