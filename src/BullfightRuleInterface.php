@@ -40,4 +40,11 @@ interface BullfightRuleInterface
      * itwri 2020/7/6 23:52
      */
     public function valuesToString($taurusValue = -1);
+
+    /**
+     * 每人几张牌
+     * @return mixed
+     * itwri 2021/1/28 17:05
+     */
+    public function getCardsLimitOfEachPlayer();
 }

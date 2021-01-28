@@ -8,12 +8,10 @@
 
 namespace Jasmine\Game\Bullfight;
 
-
-use Jasmine\Game\Bullfight\Library\PokerGameInterface;
 use Jasmine\Poker\Card;
 use Jasmine\Poker\Poker;
 
-class BullfightRule implements BullfightRuleInterface,PokerGameInterface
+class BullfightRule implements BullfightRuleInterface
 {
     /**
      * @var bool
