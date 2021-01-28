@@ -24,7 +24,6 @@ class Seat implements SeatInterface
 
     public function __construct($name = '')
     {
-        $this->id = Fun::id();
         $this->name = $name;
     }
 

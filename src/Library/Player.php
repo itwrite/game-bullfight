@@ -19,7 +19,6 @@ class Player implements PersonInterface
     
     public function __construct($name = '',$money = 0)
     {
-        $this->id = Fun::id();
         $this->name = $name;
         
         $this->Wallet = new Wallet($money);

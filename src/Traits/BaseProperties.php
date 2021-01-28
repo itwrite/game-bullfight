@@ -22,7 +22,7 @@ trait BaseProperties
      */
     public function getId(){
         if($this->id == null){
-            $this->id = Fun::id();
+            $this->id = self::id();
         }
         return $this->id;
     }
@@ -34,5 +34,8 @@ trait BaseProperties
     public function getName(){
         return $this->name;
     }
-    
+
+    protected function id(){
+        return str_replace('.','',microtime(true).'').str_pad(rand(1,1000),4,'0');
+    }
 }

@@ -2,23 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: itwri
- * Date: 2020/7/6
- * Time: 22:44
+ * Date: 2021/1/28
+ * Time: 9:48
  */
 
-namespace Jasmine\Game\Bullfight\Library;
+namespace Jasmine\Game\Bullfight;
 
 
+use Jasmine\Game\Bullfight\Library\PokerGameInterface;
 use Jasmine\Poker\Card;
 use Jasmine\Poker\Poker;
 
-class Bullfight implements BullfightInterface,PokerGameInterface
+class BullfightRule implements BullfightRuleInterface,PokerGameInterface
 {
     /**
      * @var bool
      */
     protected $hasExtraRules = false;
-    
+
     protected $cardsLimitOfEachPlayer = 5;
 
     /**
@@ -27,7 +28,7 @@ class Bullfight implements BullfightInterface,PokerGameInterface
      */
     public function getCardsLimitOfEachPlayer()
     {
-       return $this->cardsLimitOfEachPlayer;
+        return $this->cardsLimitOfEachPlayer;
     }
 
     /**

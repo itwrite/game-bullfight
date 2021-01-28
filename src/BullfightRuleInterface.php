@@ -2,19 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: itwri
- * Date: 2020/7/6
- * Time: 23:36
+ * Date: 2021/1/28
+ * Time: 9:48
  */
 
-namespace Jasmine\Game\Bullfight\Library;
+namespace Jasmine\Game\Bullfight;
 
-
-use Jasmine\Poker\Poker;
-
-interface BullfightInterface
+interface BullfightRuleInterface
 {
-    
-    
     /**
      * 计算牛牛的结果值
      *
@@ -45,5 +40,4 @@ interface BullfightInterface
      * itwri 2020/7/6 23:52
      */
     public function valuesToString($taurusValue = -1);
-
 }
