@@ -3,8 +3,7 @@
   "type": "library",
   "require": {
     "php": "^7.0",
-    "itwri/poker": "^1.0",
-    "itwri/database": "dev-master"
+    "itwri/poker": "dev-master"
   },
   "license": "MIT",
   "authors": [
