@@ -24,7 +24,7 @@ class BullfightRule implements BullfightRuleInterface
      * @return int
      * itwri 2021/1/25 10:44
      */
-    public function getCardsLimitOfEachPlayer()
+    public function getCardsLimitOfEachPlayer(): int
     {
         return $this->cardsLimitOfEachPlayer;
     }
@@ -89,7 +89,7 @@ class BullfightRule implements BullfightRuleInterface
      * @param array $secondHandCards
      * @return int 1为第一手牌大，反之-1则为第二首牌大
      */
-    public function compareHandCards(Array $firstHandCards, Array $secondHandCards)
+    public function compareHandCards(Array $firstHandCards, Array $secondHandCards): int
     {
 
         $firstTaurusValue = self::checkoutTaurusValue($this->toPoints($firstHandCards));
@@ -112,7 +112,7 @@ class BullfightRule implements BullfightRuleInterface
      * @return string
      * itwri 2020/7/4 12:26
      */
-    public function valuesToString($taurusValue = -1)
+    public function valuesToString(int $taurusValue = -1): string
     {
         switch ($taurusValue) {
             case 1:
@@ -149,7 +149,7 @@ class BullfightRule implements BullfightRuleInterface
      * @param array $cards
      * @return array
      */
-    protected function toPoints(Array $cards = array())
+    protected function toPoints(Array $cards = array()): array
     {
         $points = array();
         foreach ($cards as $card) {
@@ -173,7 +173,7 @@ class BullfightRule implements BullfightRuleInterface
      * @param array $points
      * @return int
      */
-    protected function checkoutTaurusValue(Array $points)
+    protected function checkoutTaurusValue(Array $points): int
     {
         //0表示没牛
         $taurus = 0;
