@@ -32,14 +32,14 @@ interface BullfightRuleInterface
      * @param array $secondHandCards
      * @return int 1为第一手牌大，反之-1则为第二首牌大
      */
-    public function compareHandCards(Array $firstHandCards, Array $secondHandCards);
+    public function compareHandCards(Array $firstHandCards, Array $secondHandCards): int;
 
     /**
      * @param int $taurusValue
      * @return string
      * itwri 2020/7/6 23:52
      */
-    public function valuesToString($taurusValue = -1);
+    public function valuesToString(int $taurusValue = -1): string;
 
     /**
      * 每人几张牌
