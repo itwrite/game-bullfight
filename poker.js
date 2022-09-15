@@ -12,7 +12,7 @@ icons[CARD_TYPE_CLUB] = '♣';
 icons[CARD_TYPE_HEART] = '♥';
 icons[CARD_TYPE_SPADE] = '♠';
 
-function Card(name,value,type=CARD_TYPE_DIAMOND){
+export function Card(name,value,type=CARD_TYPE_DIAMOND){
   let _name,_value,_type,_icon;
   this.setName = function(name){
     _name = name;
@@ -113,8 +113,8 @@ export function Poker(hasKings = false){
     }
 
     if(_hasKings == true){
-      _cards.push(new Card('Joker1',100,CARD_TYPE_CLUB))
-      _cards.push(new Card('Joker2',100,CARD_TYPE_SPADE))
+      _cards.push(new Card('Joker',100,CARD_TYPE_CLUB))
+      _cards.push(new Card('Joker',100,CARD_TYPE_SPADE))
     }
     return this;
   }
